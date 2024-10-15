@@ -1,0 +1,203 @@
+/* General Styles */
+body {
+    font-family: 'Roboto', 'Open Sans', sans-serif;
+    background: linear-gradient(to right, #e0f7fa, #e8f5e9); /* Light blue to light green gradient background */
+    color: #2e7d32; /* Dark green */
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+header {
+    background-color: #1b5e20; /* Dark green */
+    padding: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+header h1 {
+    color: #fff;
+    font-size: 32px;
+    margin: 0;
+}
+
+.main-nav {
+    background-color: #388e3c; /* Medium green */
+    padding: 10px;
+    border-radius: 10px;
+    margin: 20px auto;
+    width: 60%;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.main-nav ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+.main-nav li {
+    margin: 0 10px;
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: #fff;
+    padding: 10px 20px;
+    background-color: #4caf50; /* Button green */
+    border-radius: 20px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.main-nav a:hover {
+    background-color: #81c784; /* Lighter green on hover */
+    transform: scale(1.1);
+}
+
+.description {
+    background-color: #c8e6c9; /* Light green */
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 60%;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+footer {
+    background-color: #388e3c;
+    padding: 10px;
+    color: #fff;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* 网页背景 */
+body {
+    background-image: url('pattern.png'); /* 引用纹理图案的路径 */
+    background-size: cover; /* 使图片覆盖整个背景 */
+    background-repeat: no-repeat; /* 防止图片重复 */
+    background-attachment: fixed; /* 固定背景，使其在页面滚动时保持不动 */
+}
+
+/* 整个视频画廊的样式 */
+.video-gallery {
+    text-align: center;
+    margin: 40px auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.8); /* 半透明背景 */
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* 更明显的阴影效果 */
+    max-width: 900px;
+    border: 2px solid #d5d5d5; /* 添加边框 */
+}
+
+/* 单个视频容器的样式 */
+.video-container {
+    margin: 20px auto; /* 上下的间距 */
+    padding: 15px;
+    background-color: #ffffff; /* 白色背景 */
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    width: fit-content; /* 使容器宽度适应内容 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 添加阴影 */
+    transition: transform 0.3s ease-in-out; /* 添加缩放动画效果 */
+}
+
+video {
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+video:hover {
+    transform: scale(1.05); /* 鼠标悬停时略微放大 */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* 加深阴影 */
+}
+
+.video-container {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* 标题和副标题样式 */
+h2 {
+    font-size: 30px;
+    color: #2e7d32; /* 深绿色 */
+    margin-bottom: 10px;
+    font-family: 'Merriweather', serif; /* 使用更加优雅的衬线字体 */
+    border-bottom: 3px solid #2e7d32; /* 更加突出的底部线条 */
+    display: inline-block;
+    padding-bottom: 5px;
+    text-transform: uppercase; /* 大写效果 */
+    letter-spacing: 2px; /* 增加字母间距 */
+}
+
+h3 {
+    font-size: 20px;
+    color: #777; /* 更柔和的灰色 */
+    margin-top: 5px;
+    font-family: 'Roboto', sans-serif; /* 使用更现代的无衬线字体 */
+    font-style: italic;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* 添加阴影效果 */
+}
+/* 整个拼贴的样式 */
+.collage {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f0f0f0;
+}
+
+/* 图片容器样式 */
+.image-container {
+    position: absolute;
+    transition: transform 0.3s ease;
+}
+
+.image-container:hover {
+    transform: scale(1.1) rotate(5deg); /* 悬停时放大并旋转 */
+}
+
+/* 为每张图片设置不同的位置 */
+.image-container:nth-child(1) {
+    top: 10px;
+    left: 20px;
+}
+
+.image-container:nth-child(2) {
+    top: 50px;
+    left: 100px;
+}
+
+/* 文字叠加样式 */
+.text-overlay {
+    position: absolute;
+    top: 200px;
+    left: 50px;
+    color: #333;
+    font-size: 24px;
+    font-weight: bold;
+    transform: rotate(-5deg); /* 文字旋转效果 */
+    background: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* 如果需要为特定部分设置不同的字体 */
+.title {
+    font-family: 'Open Sans', sans-serif; /* 标题使用不同的字体 */
+}
