@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap"
+      rel="stylesheet"
+    />
+    <!-- 引入Tippy.js的样式和脚本 -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/tippy.js@6/themes/light.css"
+    />
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+        line-height: 1.8;
+        margin: 0;
+        padding: 0;
+        background-color: #f9f7fc;
+        color: #333;
+        background-image: url("./photo/bg.jpg");
+        background-size: cover;
+        background-attachment: fixed;
+        background-position: center;
+      }
+
+      .title {
+        font-family: "Playfair Display", serif;
+        font-size: 2.8em;
+        text-align: center;
+        margin-top: 40px;
+        margin-bottom: 20px;
+        color: #f0f8ff;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      }
+
+      .introduction,
+      .inspiration,
+      .gallery .image-container {
+        background-color: rgba(255, 255, 255, 0.85);
+      }
+
+      .introduction,
+      .inspiration {
+        padding: 30px;
+        max-width: 900px;
+        margin: 0 auto;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+        position: relative;
+      }
+
+      .introduction::before,
+      .inspiration::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 5px;
+        height: 100%;
+        background-color: #4a9c5d;
+        border-radius: 5px 0 0 5px;
+      }
+
+      .gallery {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        padding: 30px;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      .image-container {
+        flex-basis: 22%;
+        margin: 15px;
+        text-align: center;
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .gallery-img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+      }
+
+      .gallery-img:hover {
+        transform: scale(1.05);
+      }
+
+      p {
+        font-size: 1.1em;
+        color: #2c3e50;
+        margin-top: 15px;
+        line-height: 1.7;
+      }
+
+      /* 图标容器样式 */
+      .icon-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+      }
+
+      .icon {
+        width: 100px;
+        height: 100px;
+        margin: 0 10px;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 50%;
+        padding: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .icon:hover {
+        transform: scale(1.1);
+        animation: pulse 0.5s;
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+        100% {
+          transform: scale(1.1);
+        }
+      }
+
+      /* 响应式设计 */
+      @media (max-width: 768px) {
+        .gallery {
+          flex-direction: column;
+          padding: 10px;
+        }
+
+        .image-container {
+          max-width: 100%;
+        }
+
+        .introduction,
+        .inspiration {
+          padding: 20px;
+        }
+
+        .title {
+          font-size: 2.2em;
+        }
+      }
+
+      h2 {
+        font-family: "Playfair Display", serif;
+        font-size: 2em;
+        color: #2c3e50;
+        border-bottom: 2px solid #4a9c5d;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+      }
+
+      strong {
+        color: #2c3e50;
+        font-weight: 700;
+        background: linear-gradient(
+          to bottom,
+          transparent 50%,
+          rgba(74, 156, 93, 0.2) 50%
+        );
+      }
+    </style>
+    <title>Emotional Cartography</title>
+  </head>
+
+  <body>
+    <header>
+      <h1 class="title">Emotional Cartography: Mapping My Urban Journey</h1>
+    </header>
+
+    <section class="introduction">
+      <p>
+        This project explores how emotions are geographically and visually
+        represented in everyday life. My emotional map connects my favorite
+        restaurants, dim sum stores, cafes, parks, art museums, and other
+        meaningful places in the city. Each location is tied to a particular
+        mood or emotion, creating a vibrant and evolving visual diary of my
+        experiences.
+      </p>
+    </section>
+
+    <div class="icon-container">
+      <img
+        src="/images/e1.png"
+        class="icon animate__animated"
+        alt="Icon 1"
+        data-tippy-content="Happy
+          Color: Yellow - represents anticipation and excitement
+          Symbol: Sun and smiley face - the sun symbolizes warmth and positive energy, and the smiley face can be a more visual expression of happy emotions"
+      />
+      <img
+        src="/images/e2.png"
+        class="icon animate__animated"
+        alt="Icon 2"
+        data-tippy-content="Anxious
+        Color: Purple - represents a complex, tense emotion
+        Symbol: Triangle - The triangle symbol always symbolizes a warning and a reminder, adding tension to the atmosphere"
+      />
+      <img
+        src="/images/e3.png"
+        class="icon animate__animated"
+        alt="Icon 3"
+        data-tippy-content="Angry
+        Color: Red - The bright color represents the swelling of anger
+        Symbol: Rage - My favorite animated character representing rage, I am very impressed"
+      />
+      <img
+        src="/images/e4.png"
+        class="icon animate__animated"
+        alt="Icon 4"
+        data-tippy-content="Indifferent
+        Color: Gray - The dark color symbolizes flat emotions
+        Symbol: Square - ordinary shapes symbolize the absence of fluctuating emotions, while closed lines can indicate indifference and insensitivity to the outside world"
+      />
+      <img
+        src="/images/e5.png"
+        class="icon animate__animated"
+        alt="Icon 5"
+        data-tippy-content="Sad
+        Color: Dark Blue - The melancholic blue color represents tears and gloomy rainy days
+        Symbol: Tears and crying face - Tears are a visualization of pain and sorrow"
+      />
+    </div>
+
+    <section class="gallery">
+      <div class="image-container">
+        <img
+          src="/images/cafe.png"
+          alt="Cafe representing happiness"
+          class="gallery-img"
+        />
+        <p>Cafes that bring a sense of happiness and anticipation.</p>
+      </div>
+      <div class="image-container">
+        <img
+          src="/images/park1.png"
+          alt="Park representing relaxation"
+          class="gallery-img"
+        />
+        <p>Parks that offer relaxation and a moment to connect with nature.</p>
+      </div>
+      <div class="image-container">
+        <img
+          src="/images/artmuseum.png"
+          alt="Art museum representing inspiration"
+          class="gallery-img"
+        />
+        <p>Art museums that fill me with inspiration and curiosity.</p>
+      </div>
+    </section>
+
+    <section class="inspiration">
+      <h2>Inspiration and Thoughts</h2>
+      <p>
+        Inspired by my Google Maps pins, I marked all the places I love to visit
+        in green, and they began to form a pattern. It sparked the idea of
+        translating these moments into a map filled with emotions. By adding
+        elements from my favorite spots, such as restaurants and cafes, I hope
+        to create an emotional map that resonates with different experiences.
+      </p>
+    </section>
+
+    <script>
+      tippy(".icon", {
+        theme: "light",
+        animation: "scale",
+        duration: [200, 150],
+        delay: [100, 0],
+      });
+
+      document.querySelectorAll(".icon").forEach((icon) => {
+        icon.addEventListener("mouseenter", () => {
+          icon.classList.add("animate__pulse");
+        });
+        icon.addEventListener("mouseleave", () => {
+          icon.classList.remove("animate__pulse");
+        });
+      });
+    </script>
+  </body>
+</html>
