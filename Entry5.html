@@ -1,305 +1,256 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Urban Emotion Collage - Interactive Experience</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Permanent+Marker&display=swap"
-      rel="stylesheet"
-    />
-    <script src="https://unpkg.com/draggabilly@2/dist/draggabilly.pkgd.min.js"></script>
-    <style>
-      body {
-        margin: 0;
-        padding: 0;
-        font-family: "Roboto", sans-serif;
-        background-image: url("./photo/bg.jpg");
-        background-size: cover;
-        background-attachment: fixed;
-        background-position: center;
-        overflow: hidden;
-      }
 
-      @keyframes gradientBG {
-        0% {
-          background-position: 0% 50%;
-        }
-        50% {
-          background-position: 100% 50%;
-        }
-        100% {
-          background-position: 0% 50%;
-        }
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Urban Emotion Collage - Interactive Experience</title>
+  <link href="./css5_1.css"
+    rel="stylesheet" />
+  <script src="draggabilly.pkgd.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Roboto", sans-serif;
+      background-image: url("./photo/bg.jpg");
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+      overflow: hidden;
+    }
 
-      .container {
-        position: relative;
-        width: 100vw;
-        height: 100vh;
-        overflow: hidden;
-      }
+    .container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
 
-      .collage-item {
-        position: absolute;
-        transition: all 0.4s ease;
-        cursor: move;
-      }
+    .search-bar {
+      display: flex;
+      position: fixed;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255, 255, 255, 0.8);
+      padding: 10px 20px;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      display: flex;
+      gap: 10px;
+    }
 
-      .collage-item:hover {
-        transform: scale(1.1) rotate(0deg) !important;
-        z-index: 100;
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-      }
+    .search-bar input {
+      padding: 10px;
+      border: none;
+      border-radius: 10px;
+      outline: none;
+      width: 200px;
+    }
 
-      .collage-item img {
-        width: 100%;
-        height: auto;
-        border-radius: 12px;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        border: 10px solid white;
-        background-color: white;
-      }
+    .search-bar button {
+      padding: 10px 20px;
+      background: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
 
-      .text-box {
-        position: absolute;
-        padding: 15px;
-        background: rgba(255, 255, 255, 0.9);
-        border-radius: 12px;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        color: #333;
-        font-weight: bold;
-        text-align: center;
-        transform: rotate(-3deg);
-        transition: all 0.3s ease;
-        cursor: move;
-        max-width: 250px;
-      }
+    .collage-item {
+      position: absolute;
+      transition: all 0.4s ease;
+      cursor: move;
+    }
 
-      .text-box:hover {
-        transform: rotate(0deg) scale(1.05);
-        z-index: 100;
-      }
+    .collage-item:hover {
+      transform: scale(1.1) rotate(0deg) !important;
+      z-index: 100;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    }
 
-      .colorful {
-        color: #6b46c1;
-        font-size: 1.6rem;
-        font-family: "Permanent Marker", cursive;
-      }
+    .collage-item img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      border: 10px solid white;
+      background-color: white;
+      cursor: pointer;
+    }
 
-      .tape {
-        position: absolute;
-        width: 100px;
-        height: 35px;
-        background-color: rgba(255, 255, 255, 0.6);
-        transform: rotate(-45deg);
-        top: -10px;
-        left: -40px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      }
+    .label {
+      position: absolute;
+      bottom: -30px;
+      left: 0;
+      right: 0;
+      padding: 5px;
+      text-align: center;
+      font-size: 14px;
+      color: #333;
+      border-radius: 5px;
+      background: rgba(255, 255, 255, 0.8);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+    }
 
-      @media (max-width: 768px) {
-        .collage-item,
-        .text-box {
-          width: 80% !important;
-        }
-      }
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
 
-      .label {
-        position: absolute;
-        bottom: -30px;
-        left: 0;
-        right: 0;
-        padding: 5px;
-        text-align: center;
-        font-size: 14px;
-        color: #333;
-        border-radius: 5px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      }
-    </style>
-  </head>
+    .modal img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
 
-  <body>
-    <div class="container">
-      <!-- Collage Items -->
-      <div
-        class="collage-item"
-        style="top: 5%; left: 10%; width: 220px; transform: rotate(-5deg)"
-      >
-        <div class="tape"></div>
-        <img src="photo/bridge.png" alt="Bridge" />
-      </div>
-      <!-- <div
-        class="collage-item"
-        style="top: 15%; left: 40%; width: 280px; transform: rotate(3deg)"
-      >
-        <div class="tape"></div>
-        <img src="photo/building.png" alt="Building" />
-      </div> -->
-      <!-- <div
-        class="collage-item"
-        style="top: 60%; left: 15%; width: 240px; transform: rotate(-8deg)"
-      >
-        <div class="tape"></div>
-        <img src="photo/centralpark.png" alt="Central Park" />
-      </div> -->
-      <div
-        class="collage-item"
-        style="top: 10%; left: 70%; width: 200px; transform: rotate(6deg)"
-      >
-        <div class="tape"></div>
-        <img src="photo/garden.png" alt="Garden" />
-      </div>
-      <!-- <div
-        class="collage-item"
-        style="top: 45%; left: 50%; width: 260px; transform: rotate(-4deg)"
-      >
-        <div class="tape"></div>
-        <img src="photo/goddess.png" alt="Statue of Liberty" />
-      </div> -->
-      <!-- <div
-        class="collage-item"
-        style="top: 30%; left: 75%; width: 180px; transform: rotate(7deg)"
-      >
-        <div class="tape"></div>
-        <img src="photo/ice.png" alt="Ice Rink" />
-      </div> -->
-      <div
-        class="collage-item"
-        style="top: 70%; left: 5%; width: 210px; transform: rotate(4deg)"
-      >
-        <div class="tape"></div>
-        <img src="photo/museum.png" alt="Museum" />
-      </div>
-      <div
-        class="collage-item"
-        style="top: 50%; left: 80%; width: 230px; transform: rotate(-6deg)"
-      >
-        <div class="tape"></div>
-        <img src="photo/people.png" alt="People" />
-      </div>
-      <div
-        class="collage-item"
-        style="top: 45%; left: 5%; width: 240px; transform: rotate(5deg)"
-      >
-        <div class="tape"></div>
-        <img src="photo/restaurant.png" alt="Restaurant" />
-      </div>
-      <div
-        class="collage-item"
-        style="top: 65%; left: 52%; width: 220px; transform: rotate(-3deg)"
-      >
-        <div class="tape"></div>
-        <img src="photo/station.png" alt="Station" />
-      </div>
-      <div
-        class="collage-item"
-        style="top: 5%; left: 85%; width: 190px; transform: rotate(2deg)"
-      >
-        <div class="tape"></div>
-        <img src="photo/timesquare.png" alt="Times Square" />
-      </div>
+    .modal:target {
+      display: flex;
+    }
+    nav {
+      text-align: center;
+      margin: 5px 0;
+    }
 
-      <div
-        class="collage-item"
-        style="top: 6%; left: 25%; width: 220px; transform: rotate(-7deg)"
-      >
-        <div class="tape"></div>
-        <img src="Entry5/p1.jpg" alt="Five Symbols" />
-        <div class="label" style="background-color: #ff9999">Five Symbols</div>
-      </div>
-      <div
-        class="collage-item"
-        style="top: 30%; left: 65%; width: 240px; transform: rotate(-10deg)"
-      >
-        <div class="tape"></div>
-        <img src="Entry5/p2.jpg" alt="Inspiration" />
-        <div class="label" style="background-color: #99ccff">
-          Inspiration - using goggle map to record where I've been and where I
-          want to go
-        </div>
-      </div>
-      <div
-        class="collage-item"
-        style="top: 60%; left: 20%; width: 200px; transform: rotate(-2deg)"
-      >
-        <div class="tape"></div>
-        <img src="Entry5/p3.jpg" alt="Gourmet List" />
-        <div class="label" style="background-color: #ffcc99">Gourmet List</div>
-      </div>
-      <div
-        class="collage-item"
-        style="top: 15%; left: 40%; width: 280px; transform: rotate(4deg)"
-      >
-        >
-        <div class="tape"></div>
-        <img src="Entry5/p4.jpg" alt="Mood Map" />
-        <div class="label" style="background-color: #99ff99">Mood Map</div>
-      </div>
+    nav a {
+      color: #4caf50;
+      text-decoration: none;
+      font-size: 1.2em;
+      margin: 0 10px;
+      transition: color 0.3s ease;
+    }
 
-      <!-- Text Boxes -->
-      <!-- <div class="text-box" style="top: 35%; left: 25%; width: 180px">
-        <div class="tape"></div>
-        <p class="colorful">Exploring Layers and Depth</p>
-      </div> -->
-      <div class="text-box" style="top: 75%; left: 35%; width: 200px">
-        <div class="tape"></div>
-        <p>
-          Colorful moods guide our paths through urban environments, from
-          bustling downtown streets to serene corners, expressing layers of
-          sentiment that add depth to our everyday lives.
-        </p>
-      </div>
-      <div
-        class="text-box"
-        style="top: 75%; left: 70%; width: 220px; transform: rotate(3deg)"
-      >
-        <div class="tape"></div>
-        <p>
-          Creating emotional maps is a deeply personal experience, mapping joy,
-          nostalgia, and even moments of calmness across the cityscape. These
-          maps are visual diaries of our relationship with space and emotion.
-        </p>
-      </div>
-      <div
-        class="text-box"
-        style="top: 20%; left: 55%; width: 200px; transform: rotate(-2deg)"
-      >
-        <div class="tape"></div>
-        <p>
-          Each location tells a story of emotions tied to urban rhythm. From
-          vibrant parks to cozy cafes, each site evokes memories and feelings
-          unique to every individual.
-        </p>
-      </div>
+    nav a.active {
+      font-weight: bold;
+      border-bottom: 2px solid #4caf50;
+    }
+
+    nav a:hover {
+      color: #388e3c;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="search-bar">
+    <div>
+      <input type="text" id="searchInput" placeholder="Search..." />
+      <button onclick="searchImages()">Search</button>
+    </div>
+    <div>
+      <nav>
+        <a href="main.html">Go to Home Page</a>
+      </nav>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Collage Items -->
+
+    
+
+    <div class="collage-item" style="top: 10%; left: 25%; width: 220px">
+      <img src="./Entry5/20241203204112.jpg" alt="Bridge" onclick="showModal(this.src)" />
+      <div class="label" onclick="editLabel(this)">Emotional Map</div>
     </div>
 
-    <script>
-      var draggableElems = document.querySelectorAll(
-        ".collage-item, .text-box"
-      );
-      draggableElems.forEach(function (elem) {
-        new Draggabilly(elem, {
-          containment: ".container",
-        });
-      });
 
-      function randomRotate() {
-        draggableElems.forEach(function (elem) {
-          var rotation = Math.random() * 10 - 5;
-          elem.style.transform = "rotate(" + rotation + "deg)";
-        });
+
+    <div class="collage-item" style="top: 5%; left: 10%; width: 220px">
+      <img src="photo/bridge.png" alt="Bridge" onclick="showModal(this.src)" />
+      <div class="label" onclick="editLabel(this)">Bridge</div>
+    </div>
+
+
+
+
+    <div class="collage-item" style="top: 15%; left: 40%; width: 280px">
+      <img src="photo/building.png" alt="Empire State Building" onclick="showModal(this.src)" />
+      <div class="label" onclick="editLabel(this)">Empire State Building</div>
+    </div>
+    <div class="collage-item" style="top: 50%; left: 10%; width: 200px">
+      <img src="photo/centralpark.png" alt="Central Park" onclick="showModal(this.src)" />
+      <div class="label" onclick="editLabel(this)">Central Park</div>
+    </div>
+    <div class="collage-item" style="top: 10%; left: 70%; width: 200px">
+      <img src="photo/garden.png" alt="Garden" onclick="showModal(this.src)" />
+      <div class="label" onclick="editLabel(this)">Garden</div>
+    </div>
+    <div class="collage-item" style="top: 45%; left: 50%; width: 260px">
+      <img src="photo/goddess.png" alt="Statue of Liberty" onclick="showModal(this.src)" />
+      <div class="label" onclick="editLabel(this)">Statue of Liberty</div>
+    </div>
+    <div class="collage-item" style="top: 35%; left: 70%; width: 260px">
+      <img src="Entry5/p1.jpg" alt="Five Symbols" onclick="showModal(this.src)" />
+      <div class="label" onclick="editLabel(this)">Five Symbols</div>
+    </div>
+
+
+    <div class="collage-item" style="top: 28%; left: 85%; width: 260px">
+      <img src="Entry5/20241203204718.jpg" alt="Empire State Building" onclick="showModal(this.src)" />
+      <div class="label" onclick="editLabel(this)">Empire State Building</div>
+    </div>
+
+
+
+    
+
+  </div>
+
+  <div class="modal" id="imageModal" onclick="hideModal()">
+    <img id="modalImage" src="" alt="Enlarged View" />
+  </div>
+
+  <script>
+    const collageItems = document.querySelectorAll(".collage-item");
+    collageItems.forEach((item) => {
+      new Draggabilly(item, { containment: ".container" });
+    });
+
+    function searchImages() {
+      const query = document.getElementById("searchInput").value.toLowerCase();
+      collageItems.forEach((item) => {
+        const label = item.querySelector(".label").textContent.toLowerCase();
+        if (label.includes(query)) {
+          item.style.display = "block";
+        } else {
+          item.style.display = "none";
+        }
+      });
+    }
+
+    function editLabel(element) {
+      const currentText = element.textContent;
+      const newText = prompt("Edit label:", currentText);
+      if (newText !== null && newText.trim() !== "") {
+        element.textContent = newText.trim();
       }
+    }
 
-      randomRotate();
+    function showModal(src) {
+      const modal = document.getElementById("imageModal");
+      const modalImage = document.getElementById("modalImage");
+      modalImage.src = src;
+      modal.style.display = "flex";
+    }
 
-      draggableElems.forEach(function (elem) {
-        elem.addEventListener("dblclick", function () {
-          var rotation = Math.random() * 20 - 10;
-          this.style.transform = "rotate(" + rotation + "deg)";
-        });
-      });
-    </script>
-  </body>
+    function hideModal() {
+      const modal = document.getElementById("imageModal");
+      modal.style.display = "none";
+    }
+  </script>
+</body>
+
 </html>

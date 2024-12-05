@@ -1,320 +1,365 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap"
-      rel="stylesheet"
-    />
-    <!-- 引入Tippy.js的样式和脚本 -->
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/tippy.js@6/themes/light.css"
-    />
-    <script src="https://unpkg.com/@popperjs/core@2"></script>
-    <script src="https://unpkg.com/tippy.js@6"></script>
 
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap"
-      rel="stylesheet"
-    />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Emotional Cartography</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/themes/light.css" />
+  <script src="https://unpkg.com/@popperjs/core@2"></script>
+  <script src="https://unpkg.com/tippy.js@6"></script>
+  <style>
+    body {
+      font-family: "Roboto", sans-serif;
+      background-color: #f4f4f9;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-    />
+    /* 初始页面背景色 */
+    body {
+      transition: background-color 2s ease;
+      /* 背景色变化过渡 */
+    }
 
-    <style>
-      body {
-        font-family: "Roboto", sans-serif;
-        line-height: 1.8;
-        margin: 0;
-        padding: 0;
-        background-color: #f9f7fc;
-        color: #333;
-        background-image: url("./photo/bg.jpg");
-        background-size: cover;
-        background-attachment: fixed;
-        background-position: center;
+    header {
+      /* background: linear-gradient(to right, #4caf50, #81c784); */
+      background: url('./Entry3/20241203195806.jpg');
+      color: #000;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-family: "Playfair Display", serif;
+      font-size: 3em;
+      margin: 0;
+    }
+
+    nav {
+      background: #388e3c;
+      display: flex;
+      justify-content: center;
+      padding: 10px 0;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-size: 1.2em;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #c8e6c9;
+    }
+
+    section {
+      padding: 30px;
+      margin: 20px auto;
+      max-width: 1200px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    section h2 {
+      font-family: "Playfair Display", serif;
+      font-size: 1.8em;
+      color: #388e3c;
+      margin-bottom: 20px;
+    }
+
+    p {
+      line-height: 1.8;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      transition: transform 0.3s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    .icons-container {
+      display: flex;
+      justify-content: space-around;
+      padding: 20px 0;
+    }
+
+    .icon {
+      width: 100px;
+      height: 100px;
+      background-color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: transform 0.3s, background-color 0.3s;
+    }
+
+    .icon:hover {
+      transform: scale(1.1);
+      background-color: #fff;
+    }
+
+    .icon img {
+      width: 50%;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px 0;
+      background: #4caf50;
+      color: white;
+      margin-top: 20px;
+    }
+
+    .tooltip-content {
+      max-width: 300px;
+      font-size: 0.9em;
+      line-height: 1.4;
+    }
+
+    .form-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      max-width: 400px;
+    }
+
+    input,
+    textarea {
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      padding: 10px;
+      background: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1em;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #45a049;
+    }
+
+    .entries {
+      margin-top: 20px;
+    }
+
+    .entry {
+      background: #f4f4f9;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      margin-bottom: 10px;
+    }
+
+    /* Back to Top Button */
+    .back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #8ACEF7;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 50%;
+      font-size: 1.5em;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      transition: background 0.3s ease;
+    }
+
+    .back-to-top:hover {
+      background-color: #F9DD4A;
+    }
+
+
+
+
+    .text {
+      font-size: 13px;
+      font-family: Arial, sans-serif;
+      opacity: 0;
+      /* 初始状态为透明 */
+      animation: fadeIn 3s forwards;
+      /* 动画效果，持续3秒 */
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        /* 动画开始时完全透明 */
       }
 
-      .title {
-        font-family: "Playfair Display", serif;
-        font-size: 2.8em;
-        text-align: center;
-        margin-top: 40px;
-        margin-bottom: 20px;
-        color: #f0f8ff;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      100% {
+        opacity: 1;
+        /* 动画结束时完全不透明 */
       }
+    }
+  </style>
+</head>
 
-      .introduction,
-      .inspiration,
-      .gallery .image-container {
-        background-color: rgba(255, 255, 255, 0.85);
-      }
+<body>
+  <header>
+    <h1>Emotional Cartography</h1>
+    <p>Discover the emotions behind the places that matter</p>
+  </header>
 
-      .introduction,
-      .inspiration {
-        padding: 30px;
-        max-width: 900px;
-        margin: 0 auto;
-        border-radius: 12px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        margin-bottom: 30px;
-        position: relative;
-      }
+  <nav>
+    <a href="#intro">Introduction</a>
+    <a href="#icons">Icons</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#form">Share Emotion</a>
+    <a href="main.html">Go to Home Page</a>
+  </nav>
 
-      .introduction::before,
-      .inspiration::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 5px;
-        height: 100%;
-        background-color: #4a9c5d;
-        border-radius: 5px 0 0 5px;
-      }
+  <section id="intro">
+    <h2>Introduction</h2>
+    <p>
+      Emotional Cartography is a journey of visualizing the connection between our emotions and the places we inhabit.
+      Each point on this map holds a memory, a feeling, or an experience that defines our relationship with the world.
+    </p>
+  </section>
 
-      .gallery {
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        padding: 30px;
-        max-width: 1000px;
-        margin: 0 auto;
-      }
+  <section id="icons">
+    <h2>Emotional Icons</h2>
+    <div class="icons-container">
+      <div class="icon" data-tippy-content="Happy: Bright moments of joy." onclick="changeBackgroundColor('orange')">
+        <img src="images/e1.png" alt="Happy" />
+      </div>
+      <div class="icon" data-tippy-content="Sad: Melancholic memories." onclick="changeBackgroundColor('purple')">
+        <img src="images/1.jpg" alt="Sad" />
+      </div>
+      <div class="icon" data-tippy-content="Inspired: Creativity unleashed." onclick="changeBackgroundColor('blue')">
+        <img src="images/2.jpg" alt="Inspired" />
+      </div>
+      <div class="icon" data-tippy-content="Calm: A peaceful pause." onclick="changeBackgroundColor('red')">
+        <img src="images/3.jpg" alt="Calm" />
+      </div>
+      <div class="icon" data-tippy-content="Calm: A peaceful pause." onclick="changeBackgroundColor('grey')">
+        <img src="images/4.jpg" alt="Calm" />
+      </div>
+    </div>
+  </section>
 
-      .image-container {
-        flex-basis: 22%;
-        margin: 15px;
-        text-align: center;
-        background-color: #fff;
-        border-radius: 10px;
-        padding: 15px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-      }
+  <section id="gallery" style="
+  padding-bottom: 80px;
+">
+    <h2>Emotion Map Gallery</h2>
+    <div class="gallery" style="position: relative;">
+      <img src="./Entry3/20241203201532.jpg" alt="Cafe - Joy" />
 
-      .gallery-img {
-        width: 100%;
-        height: auto;
-        border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease;
-      }
+      <div  class="text"  style="position: absolute;left: 0;bottom: -50px;width: 380px;text-align: center;">
+        Art museums that fill me with inspiration and curiosity.
+      </div>
 
-      .gallery-img:hover {
-        transform: scale(1.05);
-      }
+      <img src="./Entry3/20241203201551.jpg" alt="Museum - Inspiration" />
 
-      p {
-        font-size: 1.1em;
-        color: #2c3e50;
-        margin-top: 15px;
-        line-height: 1.7;
-      }
+      <div  class="text"  style="position: absolute;left: 400px;bottom: -50px;width: 380px;text-align: center;">Parks that offer
+        relaxation and a moment to connect with
+        nature.</div>
 
-      /* 图标容器样式 */
-      .icon-container {
-        display: flex;
-        justify-content: center;
-        margin-top: 20px;
-      }
 
-      .icon {
-        width: 100px;
-        height: 100px;
-        margin: 0 10px;
-        cursor: pointer;
-        transition: transform 0.3s ease;
-        background-color: rgba(255, 255, 255, 0.8);
-        border-radius: 50%;
-        padding: 10px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      }
+      <img src="./Entry3/20241203201545.jpg" alt="Park - Nostalgia" />
 
-      .icon:hover {
-        transform: scale(1.1);
-        animation: pulse 0.5s;
-      }
 
-      @keyframes pulse {
-        0% {
-          transform: scale(1);
-        }
-        50% {
-          transform: scale(1.05);
-        }
-        100% {
-          transform: scale(1.1);
-        }
-      }
+      <div class="text" style="position: absolute;left: 810px;bottom: -50px;width: 380px;text-align: center;">Cafes that bring a
+        sense of happiness and anticipation.</div>
 
-      /* 响应式设计 */
-      @media (max-width: 768px) {
-        .gallery {
-          flex-direction: column;
-          padding: 10px;
-        }
 
-        .image-container {
-          max-width: 100%;
-        }
 
-        .introduction,
-        .inspiration {
-          padding: 20px;
-        }
-
-        .title {
-          font-size: 2.2em;
-        }
-      }
-
-      h2 {
-        font-family: "Playfair Display", serif;
-        font-size: 2em;
-        color: #2c3e50;
-        border-bottom: 2px solid #4a9c5d;
-        padding-bottom: 10px;
-        margin-bottom: 20px;
-      }
-
-      strong {
-        color: #2c3e50;
-        font-weight: 700;
-        background: linear-gradient(
-          to bottom,
-          transparent 50%,
-          rgba(74, 156, 93, 0.2) 50%
-        );
-      }
-    </style>
-    <title>Emotional Cartography</title>
-  </head>
-
-  <body>
-    <header>
-      <h1 class="title">Emotional Cartography: Mapping My Urban Journey</h1>
-    </header>
-
-    <section class="introduction">
-      <p>
-        This project explores how emotions are geographically and visually
-        represented in everyday life. My emotional map connects my favorite
-        restaurants, dim sum stores, cafes, parks, art museums, and other
-        meaningful places in the city. Each location is tied to a particular
-        mood or emotion, creating a vibrant and evolving visual diary of my
-        experiences.
-      </p>
-    </section>
-
-    <div class="icon-container">
-      <img
-        src="/images/e1.png"
-        class="icon animate__animated"
-        alt="Icon 1"
-        data-tippy-content="Happy
-          Color: Yellow - represents anticipation and excitement
-          Symbol: Sun and smiley face - the sun symbolizes warmth and positive energy, and the smiley face can be a more visual expression of happy emotions"
-      />
-      <img
-        src="/images/e2.png"
-        class="icon animate__animated"
-        alt="Icon 2"
-        data-tippy-content="Anxious
-        Color: Purple - represents a complex, tense emotion
-        Symbol: Triangle - The triangle symbol always symbolizes a warning and a reminder, adding tension to the atmosphere"
-      />
-      <img
-        src="/images/e3.png"
-        class="icon animate__animated"
-        alt="Icon 3"
-        data-tippy-content="Angry
-        Color: Red - The bright color represents the swelling of anger
-        Symbol: Rage - My favorite animated character representing rage, I am very impressed"
-      />
-      <img
-        src="/images/e4.png"
-        class="icon animate__animated"
-        alt="Icon 4"
-        data-tippy-content="Indifferent
-        Color: Gray - The dark color symbolizes flat emotions
-        Symbol: Square - ordinary shapes symbolize the absence of fluctuating emotions, while closed lines can indicate indifference and insensitivity to the outside world"
-      />
-      <img
-        src="/images/e5.png"
-        class="icon animate__animated"
-        alt="Icon 5"
-        data-tippy-content="Sad
-        Color: Dark Blue - The melancholic blue color represents tears and gloomy rainy days
-        Symbol: Tears and crying face - Tears are a visualization of pain and sorrow"
-      />
     </div>
 
-    <section class="gallery">
-      <div class="image-container">
-        <img
-          src="/images/cafe.png"
-          alt="Cafe representing happiness"
-          class="gallery-img"
-        />
-        <p>Cafes that bring a sense of happiness and anticipation.</p>
-      </div>
-      <div class="image-container">
-        <img
-          src="/images/park1.png"
-          alt="Park representing relaxation"
-          class="gallery-img"
-        />
-        <p>Parks that offer relaxation and a moment to connect with nature.</p>
-      </div>
-      <div class="image-container">
-        <img
-          src="/images/artmuseum.png"
-          alt="Art museum representing inspiration"
-          class="gallery-img"
-        />
-        <p>Art museums that fill me with inspiration and curiosity.</p>
-      </div>
-    </section>
+  </section>
 
-    <section class="inspiration">
-      <h2>Inspiration and Thoughts</h2>
-      <p>
-        Inspired by my Google Maps pins, I marked all the places I love to visit
-        in green, and they began to form a pattern. It sparked the idea of
-        translating these moments into a map filled with emotions. By adding
-        elements from my favorite spots, such as restaurants and cafes, I hope
-        to create an emotional map that resonates with different experiences.
-      </p>
-    </section>
+  <section id="form">
+    <h2>Share Your Emotion</h2>
+    <div class="form-container">
+      <form id="emotionForm">
+        <input type="text" id="location" placeholder="Enter Location" required />
+        <textarea id="emotion" rows="4" placeholder="Describe Your Emotion" required></textarea>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+    <div class="entries" id="entries"></div>
+  </section>
 
-    <script>
-      tippy(".icon", {
-        theme: "light",
-        animation: "scale",
-        duration: [200, 150],
-        delay: [100, 0],
-      });
+  <footer>
+    <p>&copy; 2024 Emotional Cartography. All Rights Reserved.</p>
+  </footer>
 
-      document.querySelectorAll(".icon").forEach((icon) => {
-        icon.addEventListener("mouseenter", () => {
-          icon.classList.add("animate__pulse");
-        });
-        icon.addEventListener("mouseleave", () => {
-          icon.classList.remove("animate__pulse");
-        });
-      });
-    </script>
-  </body>
+  <!-- Back to Top Button -->
+  <button class="back-to-top" onclick="scrollToTop()">↑</button>
+
+  <script>
+
+
+
+    // 函数改变背景色
+    function changeBackgroundColor(color) {
+      document.body.style.backgroundColor = color;
+    }
+
+
+
+
+    tippy(".icon", {
+      theme: "light",
+      animation: "scale",
+      duration: [200, 150],
+    });
+
+    document.getElementById("emotionForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const location = document.getElementById("location").value.trim();
+      const emotion = document.getElementById("emotion").value.trim();
+
+      if (location && emotion) {
+        const entry = document.createElement("div");
+        entry.classList.add("entry");
+        entry.innerHTML = `<strong>${location}:</strong> ${emotion}`;
+        document.getElementById("entries").appendChild(entry);
+        e.target.reset();
+      }
+    });
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  </script>
+</body>
+
 </html>
